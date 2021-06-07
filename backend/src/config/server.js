@@ -3,7 +3,8 @@ const port = 3003;
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express();
-const allowCors = require('./cors')
+const cors1 = require('./cors')
+const cors = require('cors')
 
 /**
  * urlenconded trata todas as requisições no body
@@ -11,7 +12,8 @@ const allowCors = require('./cors')
  */
  app.use(bodyParser.urlencoded({ extended: true }))
  app.use(bodyParser.json())
- app.use(allowCors)
+ app.use(cors1);
+ app.options('*',cors())
 
  app.listen(port, () => {
     console.log(`BACKEND RODANDO NA PORTA ${port}`)
