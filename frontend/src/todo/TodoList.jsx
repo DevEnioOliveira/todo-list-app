@@ -7,11 +7,24 @@ const TodoList = (props) => {
         const list = props.list || [];
         return list.map(todo => (
             <tr key={todo._id}>
-                <td>{todo.description}</td>
+                <td className={todo.done ? 'markedAsDone' : ''}>{todo.description}</td>
                 <td>
+                    <IconButton style="success" 
+                                icon="check"
+                                onClick={() => props.handleCheck(todo)}
+                                hide={todo.done}>
+
+                    </IconButton>
+                    <IconButton style="warning" 
+                                icon="undo"
+                                onClick={() => props.handlePending(todo)}
+                                hide={!todo.done}>
+
+                    </IconButton>
                     <IconButton style='danger' 
                                 icon='trash' 
-                                onClick={()=> props.handleRemove(todo)}>
+                                onClick={()=> props.handleRemove(todo)}
+                                hide={!todo.done}>
                     
                     </IconButton>
                 </td>
@@ -25,7 +38,7 @@ const TodoList = (props) => {
                 <thead>
                     <tr>
                         <th>Descrição</th>
-                        <th>Ações</th>
+                        <th className="tableActions">Ações</th>
                     </tr>
                 </thead>
                 <tbody>

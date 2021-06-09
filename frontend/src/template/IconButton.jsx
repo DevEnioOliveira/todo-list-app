@@ -1,5 +1,4 @@
 import React from 'react'
-import If from '../template/If'
 
 const IconButton = (props) => {
     if(props.hide) {
